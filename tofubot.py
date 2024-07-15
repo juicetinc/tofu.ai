@@ -5,11 +5,14 @@ import os
 # load environment variables from .env file
 load_dotenv()
 
+# get the token from the environment variable
+token = os.getenv('DISCORD_TOKEN')
+
 # set up the necessary intents
 intents = discord.Intents.default()
 intents.message_content = True  # Enable the message content intent if you need to read message content
 
-# initializes the discrod client with intents
+# initializes the discord client with intents
 client = discord.Client(intents=intents)
 
 @client.event
@@ -24,8 +27,7 @@ async def on_message(message):
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-# get the token from the environment variable
-token = os.getenv('DISCORD_TOKEN')
+
 
 # run the client with the token
 client.run(token)
